@@ -26,15 +26,15 @@ export default (sequelize) => {
         observacoes: { // observações da entrega
             type: DataTypes.TEXT,
             allowNull: true,
-        }
+        },
+        filialId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+}
+
     });
 
-    Entrega.associate = (models) => {
-        Entrega.belongsTo(models.Pedido, { foreignKey: 'pedidoId' });
-        Entrega.belongsTo(models.Funcionario, { foreignKey: 'entregadorId' }); // funcionário que entregou
-        Entrega.belongsTo(models.Cliente, { foreignKey: 'clienteId' });
-        Entrega.belongsTo(models.Filial, { foreignKey: 'filialId' });
-    };
+  
 
     return Entrega;
 };

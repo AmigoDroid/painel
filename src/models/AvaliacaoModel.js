@@ -27,15 +27,15 @@ export default (sequelize) => {
             type: DataTypes.ENUM('filial','pedido','funcionario'),
             allowNull: false,
             defaultValue: 'filial',
-        }
+        },
+        filialId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+}
+
     });
 
-    Avaliacao.associate = (models) => {
-        Avaliacao.belongsTo(models.Cliente, { foreignKey: 'clienteId' });
-        Avaliacao.belongsTo(models.Funcionario, { foreignKey: 'funcionarioId', allowNull: true });
-        Avaliacao.belongsTo(models.Filial, { foreignKey: 'filialId', allowNull: true });
-        Avaliacao.belongsTo(models.Pedido, { foreignKey: 'pedidoId', allowNull: true });
-    };
+   
 
     return Avaliacao;
 };

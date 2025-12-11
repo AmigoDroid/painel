@@ -31,15 +31,15 @@ export default (sequelize) => {
         status: {
             type: DataTypes.ENUM('ativo','inativo'),
             defaultValue: 'ativo',
-        }
+        },
+        filialId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+}
+
     });
 
-    Funcionario.associate = (models) => {
-        Funcionario.belongsTo(models.Filial, { foreignKey: 'filialId' });
-        Funcionario.hasMany(models.Pedido, { foreignKey: 'funcionarioId' });
-        Funcionario.hasMany(models.Caixa, { foreignKey: 'funcionarioId' });
-        Funcionario.hasMany(models.Log, { foreignKey: 'funcionarioId' });
-    };
+   
 
     return Funcionario;
 };

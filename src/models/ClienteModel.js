@@ -39,15 +39,15 @@ export default (sequelize) => {
         pontosFidelidade: {
             type: DataTypes.INTEGER,
             defaultValue: 0,
-        }
+        },
+        filialId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+}
+
     });
 
-    Cliente.associate = (models) => {
-        Cliente.belongsTo(models.Filial, { foreignKey: 'filialId' });
-        Cliente.hasMany(models.Pedido, { foreignKey: 'clienteId' });
-        Cliente.hasMany(models.Log, { foreignKey: 'clienteId' });
-        Cliente.hasMany(models.Avaliacao, { foreignKey: 'clienteId' });
-    };
+  
 
     return Cliente;
 };

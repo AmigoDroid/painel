@@ -32,13 +32,15 @@ export default (sequelize) => {
         status: { // disponível ou indisponível
             type: DataTypes.ENUM('disponivel','indisponivel'),
             defaultValue: 'disponivel',
-        }
+        },
+        filialId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+}
+
     });
 
-    Estoque.associate = (models) => {
-        Estoque.belongsTo(models.Filial, { foreignKey: 'filialId' });
-        Estoque.hasMany(models.Cardapio, { foreignKey: 'estoqueId' }); // opcional: vincular itens do cardápio
-    };
+
 
     return Estoque;
 };

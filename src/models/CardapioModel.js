@@ -30,13 +30,14 @@ export default (sequelize) => {
         imagem: { // URL da imagem do item
             type: DataTypes.STRING,
             allowNull: true,
-        }
+        },
+        filialId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+}
+
     });
 
-    Cardapio.associate = (models) => {
-        Cardapio.belongsTo(models.Filial, { foreignKey: 'filialId' });
-        Cardapio.hasMany(models.Pedido, { foreignKey: 'cardapioId' }); // opcional, se quiser vincular itens específicos a pedidos
-    };
-
+   
     return Cardapio;
 };

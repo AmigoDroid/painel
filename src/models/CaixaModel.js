@@ -41,13 +41,14 @@ export default (sequelize) => {
         status: { // aberto ou fechado
             type: DataTypes.ENUM('aberto','fechado'),
             defaultValue: 'aberto',
-        }
+        },
+        filialId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+}
+
     });
 
-    Caixa.associate = (models) => {
-        Caixa.belongsTo(models.Filial, { foreignKey: 'filialId' });
-        Caixa.belongsTo(models.Funcionario, { foreignKey: 'funcionarioId' }); // quem abriu/fechou o caixa
-    };
-
+   
     return Caixa;
 };

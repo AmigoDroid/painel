@@ -28,19 +28,14 @@ export default (sequelize) => {
             allowNull: false,
             defaultValue: true,
         },
+        filialId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+}
+
     });
 
-    Filial.associate = (models) => {
-        Filial.hasMany(models.Pedido, { foreignKey: "filialId" });//ok
-        Filial.hasMany(models.Cardapio, { foreignKey: "filialId" });
-        Filial.hasMany(models.Funcionario, { foreignKey: "filialId" });//ok
-        Filial.hasMany(models.Estoque, { foreignKey: "filialId" });
-        Filial.hasMany(models.Cliente, { foreignKey: "filialId" });//ok
-        Filial.hasMany(models.Avaliacao, { foreignKey: "filialId" });//ok
-        Filial.hasMany(models.Entrega, { foreignKey: "filialId" });//ok
-        Filial.hasMany(models.Caixa, { foreignKey: "filialId" });//ok
-        Filial.hasMany(models.Mesas, { foreignKey: "filialId" });//ok
-    };
+
 
     return Filial;
 };

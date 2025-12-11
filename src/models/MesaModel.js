@@ -19,13 +19,15 @@ export default (sequelize) => {
         status: { // livre, ocupada, reservada
             type: DataTypes.ENUM('livre','ocupada','reservada'),
             defaultValue: 'livre',
-        }
+        },
+        filialId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+}
+
     });
 
-    Mesa.associate = (models) => {
-        Mesa.belongsTo(models.Filial, { foreignKey: 'filialId' });
-        Mesa.hasMany(models.Pedido, { foreignKey: 'mesaId' });
-    };
+   
 
     return Mesa;
 };

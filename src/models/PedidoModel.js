@@ -26,15 +26,15 @@ export default (sequelize) => {
         observacoes: { // observações adicionais do cliente
             type: DataTypes.TEXT,
             allowNull: true,
-        }
+        },
+        filialId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+}
+
     });
 
-    Pedido.associate = (models) => {
-        Pedido.belongsTo(models.Filial, { foreignKey: 'filialId' });
-        Pedido.belongsTo(models.Mesa, { foreignKey: 'mesaId', allowNull: true });
-        Pedido.belongsTo(models.Cliente, { foreignKey: 'clienteId', allowNull: true });
-        Pedido.belongsTo(models.Funcionario, { foreignKey: 'funcionarioId', allowNull: true });
-    };
+   
 
     return Pedido;
 };
