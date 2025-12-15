@@ -4,23 +4,27 @@ import router from "./router/index.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
 app.use(express.json());
 app.use(router);
 
-const testConnection = async () => {
+async function startServer() {
   try {
     await db.sequelize.authenticate();
-    console.log("Conectado ao PostgreSQL com sucesso!");
+    console.log("PostgreSQL conectado");
 
-    await db.sequelize.sync({ alter: true });
-    console.log("Tabelas sincronizadas com sucesso!");
+    if (process.env.NODE_ENV === "development") {
+      await db.sequelize.sync({ force: true });
+      console.log("Sync em modo desenvolvimento");
+    }
+
+    app.listen(PORT, () => {
+      console.log(`Servidor rodando na porta ${PORT}`);
+    });
   } catch (err) {
-    console.error("Erro na conexão:", err);
+    console.error("Falha crítica ao iniciar o servidor:", err);
+    process.exit(1);
   }
-};
+}
 
-testConnection();
-
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
-});
+startServer();

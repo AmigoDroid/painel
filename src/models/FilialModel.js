@@ -12,7 +12,7 @@ export default (sequelize) => {
             allowNull: false,
         },
         endereco: {
-            type: DataTypes.STRING,
+            type: DataTypes.JSONB,
             allowNull: false,
         },
         telefone: {
@@ -20,18 +20,14 @@ export default (sequelize) => {
             allowNull: false,
         },
         rate: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.STRING,
             allowNull: true,
         },
         status: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: true,
-        },
-        filialId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-}
+        }
 
     });
 

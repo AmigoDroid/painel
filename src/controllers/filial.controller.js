@@ -1,27 +1,50 @@
-import db from "../models/index.js";
-const Filial = db.Filial;
+import FilialService from "../services/FilialService.js";
 
 export default {
+
     async getAll(req, res) {
-        res.json(await Filial.findAll());
+        try {
+            const filiais = await FilialService.findAll();
+            res.json(filiais);
+        } catch (err) {
+            res.status(500).json({ error: err.message });
+        }
     },
 
     async getById(req, res) {
-        const item = await Filial.findByPk(req.params.id);
-        item ? res.json(item) : res.status(404).json({ error: "Filial não encontrada" });
+        try {
+            const filial = await FilialService.findById(req.params.id);
+            res.json(filial);
+        } catch (err) {
+            res.status(404).json({ error: err.message });
+        }
     },
 
     async create(req, res) {
-        res.json(await Filial.create(req.body));
+        try {
+            const filial = await FilialService.create(req.body);
+            res.status(201).json(filial);
+        } catch (err) {
+            res.status(400).json({ error: err.message });
+        }
     },
 
     async update(req, res) {
-        await Filial.update(req.body, { where: { id: req.params.id }});
-        res.json({ success: true });
+        try {
+            const filial = await FilialService.update(req.params.id, req.body);
+            res.json(filial);
+        } catch (err) {
+            res.status(400).json({ error: err.message });
+        }
     },
 
     async delete(req, res) {
-        await Filial.destroy({ where: { id: req.params.id }});
-        res.json({ success: true });
-    },
+        try {
+            await FilialService.delete(req.params.id);
+            res.json({ success: true });
+        } catch (err) {
+            res.status(400).json({ error: err.message });
+        }
+    }
+
 };
