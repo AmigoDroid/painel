@@ -1,7 +1,6 @@
 import bcrypt from "bcryptjs";
 import { getToken } from "../utils/tokenProvider.js";
 import db from "../models/index.js";
-
 class LoginService {
 
   async login({ email, senha }) {
