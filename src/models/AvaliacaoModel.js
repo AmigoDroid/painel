@@ -29,10 +29,9 @@ export default (sequelize) => {
             defaultValue: 'filial',
         },
         filialId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-}
-
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        }
     });
 
    

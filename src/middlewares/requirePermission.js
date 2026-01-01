@@ -5,7 +5,7 @@ export function requirePermission(required) {
     if (!req.user) return res.sendStatus(401);
 
     const ok = Array.isArray(required)
-      ? hasAnyPermission(req.user, required)
+      ? hasAllPermissions(req.user, required)
       : hasPermission(req.user, required);
 
     if (!ok) return res.sendStatus(403);

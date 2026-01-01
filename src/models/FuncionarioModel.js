@@ -33,10 +33,9 @@ export default (sequelize) => {
             defaultValue: 'ativo',
         },
         filialId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-}
-
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        }
     });
 
    

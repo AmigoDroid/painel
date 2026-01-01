@@ -13,6 +13,7 @@ import CardapioModel from "./CardapioModel.js";
 import EstoqueModel from "./EstoqueModel.js";
 
 import applyAssociations from "./associations.js";
+import FuncionarioPermissao from "./FuncionarioPermissao.js";
 
 // Instanciar models
 const models = {
@@ -26,6 +27,7 @@ const models = {
     Mesa: MesaModel(sequelize),
     Cardapio: CardapioModel(sequelize),
     Estoque: EstoqueModel(sequelize),
+    FuncionarioPermissao: FuncionarioPermissao(sequelize)
 };
 
 // Aplicar relacionamentos
