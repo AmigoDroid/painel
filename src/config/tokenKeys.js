@@ -1,6 +1,6 @@
 const TOKEN_KEYS = {
     JWT_SECRET: process.env.JWT_SECRET || "default_secret_key",
-    NODE_ENV: process.env.NODE_ENV || "development",
+    NODE_ENV: process.env.NODE_ENV || "production",//development
     PORT: process.env.PORT || 3000,
     POSTGRES_HOST: process.env.POSTGRES_HOST || "localhost",
     POSTGRES_PORT: process.env.POSTGRES_PORT || "5432",

@@ -1,14 +1,15 @@
-import { hasPermission } from "../utils/permissionHelper.js";
+import { hasPermission,hasAnyPermission,hasAllPermissions } from "../utils/permissionHelper.js";
 
-export default function requirePermission(permission) {
-    return (req, res, next) => {
-        if (!req.user) {
-            return res.status(401).json({ error: "Usuário não autenticado" });
-        }
+export function requirePermission(required) {
+  return (req, res, next) => {
+    if (!req.user) return res.sendStatus(401);
 
-        if (!hasPermission(req.user, permission)) {
-            return res.status(403).json({ error: "Acesso negado" });
-        }
-        next(); 
-    };
+    const ok = Array.isArray(required)
+      ? hasAnyPermission(req.user, required)
+      : hasPermission(req.user, required);
+
+    if (!ok) return res.sendStatus(403);
+
+    next();
+  };
 }

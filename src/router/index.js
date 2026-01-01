@@ -23,5 +23,7 @@ router.use("/caixas", caixaRoutes);
 router.use("/mesas", mesaRoutes);
 router.use("/cardapio", cardapioRoutes);
 router.use("/estoque", estoqueRoutes);
+router.use("/login"); // Rota de login para clientes que ainda vou criar
+router.use("/admin/login"); // Rota de login para funcionários que ainda vou criar
 
 export default router;

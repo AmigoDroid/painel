@@ -10,6 +10,7 @@ import errorHandler from "./middlewares/errorHandler.js";
 const app = express();
 const PORT = TOKEN_KEYS.PORT;
 
+
 /* ==========================
    MIDDLEWARES
 ========================== */
