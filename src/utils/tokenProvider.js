@@ -19,3 +19,11 @@ export function getToken(userData,time='1d') {
         { expiresIn: time }
     );
 }
+export function verifyToken(token) {
+    try {
+        const decoded = jwt.verify(token, TOKEN_KEYS.JWT_SECRET);
+        return decoded;
+    } catch (err) {
+        throw new Error("Token inválido ou expirado");
+    }
+}

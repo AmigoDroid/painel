@@ -25,8 +25,5 @@ router.use("/mesas", mesaRoutes);
 router.use("/cardapio", cardapioRoutes);
 router.use("/estoque", estoqueRoutes);
 router.use("/login",login); // Rota de login para clientes que ainda vou criar
-router.use("/admin/login", (req, res) => {
-  res.status(501).json({ message: "Login admin ainda não implementado" });
-}); // Rota de login para funcionários que ainda vou criar
 
 export default router;

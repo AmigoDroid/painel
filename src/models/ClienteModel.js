@@ -11,26 +11,38 @@ export default (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        cpf: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
+        },
         email: {
             type: DataTypes.STRING,
             allowNull: true,
             unique: true,
         },
+        senha: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         telefone: {
             type: DataTypes.STRING,
             allowNull: true,
+            defaultValue: ""
         },
         endereco: {
-            type: DataTypes.STRING,
+            type: DataTypes.JSONB,
             allowNull: true,
         },
         latitude: {
             type: DataTypes.FLOAT,
             allowNull: true,
+            defaultValue: 0.0
         },
         longitude: {
             type: DataTypes.FLOAT,
             allowNull: true,
+             defaultValue: 0.0
         },
         status: {
             type: DataTypes.ENUM('ativo','inativo'),

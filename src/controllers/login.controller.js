@@ -9,6 +9,14 @@ class LoginController {
       return res.status(401).json({ error: err.message });
     }
   }
+  async adminLogin(req, res) {
+    try {
+      const result = await LoginService.adminLogin(req.body);
+      return res.json(result);
+    } catch (err) {
+      return res.status(401).json({ error: err.message });
+    }
+  }
 }
 
-export default new LoginController();
+export default new LoginController(); 
