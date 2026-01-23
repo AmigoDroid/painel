@@ -42,10 +42,30 @@ class PermissaoService {
     }
   }
 
-  async findAll() {
-    return await FuncionarioPermissao.findAll();
+ async findAll() {
+  try {
+    return await Funcionario.findAll({
+      attributes: [
+        "id",
+        "nome",
+        "email",
+        "cargo",
+        "status",
+        "filialId"
+      ],
+      include: [
+        {
+          model: FuncionarioPermissao,
+          as: "permissoes",
+          attributes: ["permission"]
+        }
+      ]
+    });
+  } catch (err) {
+    console.error("ERRO DB [Permissao.findAll]:", err);
+    throw new AppError("Erro ao listar funcionários com permissões", 500);
   }
-
+}
   async findByFuncionario(funcionarioId) {
     if (!funcionarioId) {
       throw new AppError("Funcionário é obrigatório", 400);

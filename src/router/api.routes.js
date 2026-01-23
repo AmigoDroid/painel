@@ -9,6 +9,7 @@ import caixaRoutes from "./caixa.routes.js";
 import mesaRoutes from "./mesa.routes.js";
 import cardapioRoutes from "./cardapio.routes.js";
 import estoqueRoutes from "./estoque.routes.js";
+import permissions from "./permissao.routes.js";
 
 const api = Router();
 api.use("/filiais", filialRoutes);
@@ -21,5 +22,6 @@ api.use("/caixas", caixaRoutes);
 api.use("/mesas", mesaRoutes);
 api.use("/cardapio", cardapioRoutes);
 api.use("/estoque", estoqueRoutes);
+api.use("/permissoes", permissions);
 
 export default api;

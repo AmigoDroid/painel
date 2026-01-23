@@ -108,14 +108,15 @@ export default function applyAssociations(models) {
         foreignKey: "funcionarioId",
         onDelete: "SET NULL"
     });
-
-    Funcionario.hasMany(FuncionarioPermissao, {
-       foreignKey: "funcionarioId",
-       onDelete: "CASCADE"
+Funcionario.hasOne(FuncionarioPermissao, {
+  foreignKey: "funcionarioId",
+  as: "permissoes",
+  onDelete: "CASCADE"
 });
 
 FuncionarioPermissao.belongsTo(Funcionario, {
-       foreignKey: "funcionarioId"
+  foreignKey: "funcionarioId",
+  as: "funcionario"
 });
 
     Avaliacao.belongsTo(Funcionario, { foreignKey: "funcionarioId" });
