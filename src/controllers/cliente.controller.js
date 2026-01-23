@@ -1,27 +1,48 @@
-import db from "../models/index.js";
-const Cliente = db.Cliente;
+import ClienteService from "../services/cliente.service.js";
 
 export default {
-    async getAll(req, res) {
-        res.json(await Cliente.findAll());
-    },
+  async getAll(req, res, next) {
+    try {
+      const clientes = await ClienteService.findAll();
+      res.json(clientes);
+    } catch (err) {
+      next(err);
+    }
+  },
 
-    async getById(req, res) {
-        const item = await Cliente.findByPk(req.params.id);
-        item ? res.json(item) : res.status(404).json({ error: "Cliente não encontrado" });
-    },
+  async getById(req, res, next) {
+    try {
+      const cliente = await ClienteService.findById(req.params.id);
+      res.json(cliente);
+    } catch (err) {
+      next(err);
+    }
+  },
 
-    async create(req, res) {
-        res.json(await Cliente.create(req.body));
-    },
+  async create(req, res, next) {
+    try {
+      const cliente = await ClienteService.create(req.body);
+      res.status(201).json(cliente);
+    } catch (err) {
+      next(err);
+    }
+  },
 
-    async update(req, res) {
-        await Cliente.update(req.body, { where: { id: req.params.id }});
-        res.json({ success: true });
-    },
+  async update(req, res, next) {
+    try {
+      const cliente = await ClienteService.update(req.params.id, req.body);
+      res.json(cliente);
+    } catch (err) {
+      next(err);
+    }
+  },
 
-    async delete(req, res) {
-        await Cliente.destroy({ where: { id: req.params.id }});
-        res.json({ success: true });
-    },
+  async delete(req, res, next) {
+    try {
+      await ClienteService.delete(req.params.id);
+      res.json({ success: true });
+    } catch (err) {
+      next(err);
+    }
+  }
 };

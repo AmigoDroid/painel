@@ -116,6 +116,9 @@ class FilialService {
         if (!data.telefone) {
             throw new AppError("Telefone da filial é obrigatório", 400);
         }
+         if (!data.endereco) {
+            throw new AppError("Endereço da filial é obrigatório", 400);
+        }
     }
 }
 

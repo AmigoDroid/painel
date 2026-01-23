@@ -2,22 +2,29 @@ import bcrypt from "bcryptjs";
 import { getToken } from "../utils/tokenProvider.js";
 import db from "../models/index.js";
 import { PERMISSION_GROUPS } from "../config/permissionGroups.js";
+import { isValidEmail } from "../utils/validators.js";
+import { comparePassword } from "../utils/password.js";
 class LoginService {
 
   async login({ email, senha }) {
     if (!email || !senha) {
       throw new Error("Email e senha são obrigatórios");
     }
+        if (!isValidEmail(email)) {
+      throw new Error("Formato de e-mail inválido");
+    }
 
     const cliente = await db.Cliente.findOne({
       where: { email, status: "ativo" }
     });
-
+  
     if (!cliente) {
       throw new Error("Usuário ou senha inválidos");
     }
+      console.log(cliente.dataValues); // essa é a linha do erro
+    
 
-    const senhaOk = await bcrypt.compare(senha, cliente.senha);
+    const senhaOk = await comparePassword(senha, cliente.senha);
     if (!senhaOk) {
       throw new Error("Usuário ou senha inválidos");
     }
@@ -49,11 +56,11 @@ class LoginService {
     if (!funcionario) {
       throw new Error("Usuário ou senha inválidos");
     }
-    const senhaOk = await bcrypt.compare(senha, funcionario.senha);
+    const senhaOk = await comparePassword(senha, funcionario.senha);
     if (!senhaOk) {
       throw new Error("Usuário ou senha inválidos");
     }
-    const permissions = await getPermissions(funcionario.id);
+    const permissions = await this.getPermissions(funcionario.id);
     const token = getToken({
       id: funcionario.id,
       nome: funcionario.nome,

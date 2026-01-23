@@ -1,4 +1,4 @@
-import FilialService from "../services/FilialService.js";
+import FilialService from "../services/Filial.service.js";
 
 export default {
 

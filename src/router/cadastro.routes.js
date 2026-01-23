@@ -4,7 +4,10 @@ import controllerFuncionario from "../controllers/funcionario.controller.js";
 
 const cadastro = Router();
 
-cadastro.post("/", ()=>{});
-cadastro.post("/admin", ()=>{});
+// Cadastro de cliente
+cadastro.post("/", controllerCliente.create);
+
+// Cadastro de administrador / funcionário
+cadastro.post("/admin", controllerFuncionario.create);
 
 export default cadastro;
